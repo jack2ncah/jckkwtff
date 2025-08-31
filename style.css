@@ -1,0 +1,396 @@
+/* Body background with image */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  height: 100%;
+  background: url('images/background.jpg') no-repeat center center fixed;
+  background-size: cover;
+  transition: filter 0.5s ease; /* smooth transition when removing blur */
+}
+
+/* Landing overlay */
+#landing {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(8px);      /* initial blur */
+  background: rgba(0,0,0,0.4);     /* semi-transparent dark overlay */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  transition: opacity 0.5s ease;
+}
+
+/* Click button */
+#enter-btn {
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 700; /* Optional: makes the text bold */
+  padding: 20px 40px;
+  font-size: 1.0rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0);
+  color: #ffffff;
+  transition: 0.3s;
+}
+
+
+#enter-btn:hover {
+  background: #ff4b2b00;
+  color: rgb(255, 255, 255);
+}
+
+/* Main content hidden initially */
+#main-content {
+  display: none;
+}
+
+/* Main card container */
+.container {
+  max-width: 420px;
+  width: 90%;
+  margin: 90px auto;
+  padding: 50px 20px;
+  background: rgba(255, 255, 255, 0.938);
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.336);
+  text-align: center;
+  position: relative;
+  z-index: 1;  /* ensures it's above the snow */
+}
+
+/* Profile picture */
+.profile-pic {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid #0000000c;
+  margin-bottom: -20px;
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, #000000, #000000);
+
+  /* Background Gradient Text */
+  background-clip: text;             /* Standard property */
+  -webkit-background-clip: text;     /* For WebKit browsers */
+
+  /* Transparent 4 Gradient */
+  color: transparent;                /* Standard */
+  -webkit-text-fill-color: transparent; /* WebKit fallback */
+
+  text-shadow: 0 0 10px rgba(40, 45, 88, 0.5);
+}
+
+#profileTitle {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 2.3rem;
+  font-weight: 800;
+  text-align: center;
+} 
+
+/* Emoji Style*/
+#profileTitle span ~ * {
+  text-shadow: none; /* optional: remove glow from emoji */
+}
+
+
+/* Bio paragraph */
+.bio-text, .bio {
+  font-size: clamp(0.9rem, 2.5vw, 1rem);
+  color: #666;
+  line-height: 1.0;
+  margin-bottom: 40px;
+  padding: 0 10px;
+}
+
+/* Links */
+.links a {
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  padding: 14px;
+  margin: 16px 0;
+  border-radius: 12px;
+  text-decoration: none;
+  color: #000000;
+  box-shadow: 0 6px 8px rgba(64, 69, 88, 0.699);
+}
+
+.links a img {
+  width: 28px;
+  height: 28px;
+  margin-right: 12px;
+}
+
+/* Social icons row */
+.socials a img {
+  width: 40px;
+  height: 40px;
+  margin: 0 40px;
+  border-radius: 0%;
+  background: #f8f8f800;
+  padding: 4px;
+}
+
+/* === Audio Control Center Styles === */
+.volume-control {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 1000;
+  padding: 12px 12px;
+  border-radius: 20px;
+  backdrop-filter: blur(12px) saturate(150%);
+  background: rgba(20, 20, 35, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  color: white;
+  width: 400px;
+  height: 120px;
+  font-family: "Roboto Mono", monospace;
+}
+
+/* Layout */
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Play / Pause Button */
+.play-button-container {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.play-button {
+  background: linear-gradient(135deg, rgba(120, 129, 255, 0.25), rgba(60, 124, 220, 0.25));
+  border: 1px solid rgba(200, 160, 255, 0.3);
+  backdrop-filter: blur(8px);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.play-button:hover {
+  background: linear-gradient(135deg, rgba(160, 177, 255, 0.35), rgba(80, 123, 240, 0.35));
+  transform: scale(1.05);
+}
+
+.icon {
+  width: 25px;
+  height: 25px;
+  stroke: white;
+  transition: opacity 0.3s ease;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Glow Effect */
+.glow-effect {
+  position: absolute;
+  top: -60%;                     /* center vertically */
+  left: -60%;                    /* center horizontally */
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(80, 141, 255, 0.5), transparent 50%);
+  z-index: -1;
+  animation: pulseGlow 2s infinite alternate;
+}
+
+@keyframes pulseGlow {
+  from {
+    transform: scale(0.5);
+    opacity: 0.5;
+  }
+  to {
+    transform: scale(1.3);
+    opacity: 0.9;
+  }
+}
+
+/* Volume Section */
+.volume-section {
+  margin-top: -65px;
+}
+
+.volume-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mute-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.volume-text {
+    display: none;
+}
+
+/* Slider */
+.slider-container {
+  margin-top: 8px;
+  position: fixed;
+  top: 2px;          /* Centered at the top of container */
+  left: 55%;
+  transform: translateX(-50%); /* center horizontally */
+  width: 300px;       /* slider length */
+  z-index: 9999;
+}
+
+.volume-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 6px;
+  background: linear-gradient(to right, hsl(234, 70%, 65%) 50%, hsl(0, 14%, 10%) 50%);
+  outline: none;
+  transition: background 0.3s;
+}
+
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: white;
+  border: 2px solid hsl(239, 70%, 65%);
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.volume-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+/* Volume Indicators */
+.volume-indicators {
+  display: flex;
+  margin-top: 6px;
+  gap: 3px;
+}
+
+.indicator {
+  flex: 1;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+  transition: background 0.3s;
+}
+
+.indicator.active {
+  background: linear-gradient(135deg, hsl(239, 70%, 65%), hsl(263, 65%, 60%));
+}
+
+/* Status Section */
+.status-section {
+  margin-top: 10px;
+  text-align: center;
+  position: fixed;
+  top: 50px;          /* Centered at the top of container */
+  left: 50%;
+  transform: translateX(-50%); /* center horizontally */
+  width: 300px;       /* slider length */
+  z-index: 9999;
+}
+
+.status-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: #aaa;
+}
+
+.track-text {
+  font-size: 12px;
+  color: #666;
+  transition: color 0.3s;
+}
+
+.track-text.playing {
+  color: hsl(236, 70%, 75%);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .volume-control {
+    width: 95%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+/* Progress Bar */
+.progress-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 150%;
+  margin-top: 50px;
+  color: rgb(255, 255, 255);
+  font-size: 12px;
+  transform: translateX(15%); /* negative % shifts left, positive shifts right */
+}
+
+.progress-bar {
+  flex: 1;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  border-radius: 4px;
+  background: hsla(237, 30%, 27%, 0.473);;
+  outline: none;
+  cursor: pointer;
+}
+
+/* Progress thumb */
+.progress-bar::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #5053ff;
+  box-shadow: 0 0 8px #5350ff;
+  cursor: pointer;
+}
+
+.progress-bar::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #5c50ff;
+  box-shadow: 0 0 8px #5062ff;
+  cursor: pointer;
+}
+
+/* Snow effect */
+#snowCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* allows clicks to pass through */
+    z-index: 0; /* adjust as needed */
+}

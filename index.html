@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="images/logo.png" type="image/png">
+  <title>BioLink Jckk</title>
+  <link rel="stylesheet" href="style.css">
+
+    <!-- CTE Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Landing overlay -->
+  <div id="landing">
+      <button id="enter-btn">click to enter</button>
+  </div>
+
+  <!-- Snow Overlay -->
+  <canvas id="snowCanvas"></canvas>
+
+  <!-- Main content (hidden initially) -->
+  <div class="container" id="main-content">
+      <!-- Profile -->
+      <img src="images/profile.jpg" alt="Profile" class="profile-pic">
+<div class="profile-header">
+  <h1 id="profileTitle">
+    <span class="gradient-text">Jckk</span>💕
+  </h1>
+</div>
+      <!-- Bio paragraph -->
+      <p class="bio-text"> ★ Scripter | Developer | Designer ★</p>
+
+      <!-- Links with custom icons -->
+      <div class="links">
+        <a href="https://www.youtube.com/@jckkmafeotu" target="_blank">
+          <img src="images/youtube.png" alt="YouTube">  
+          <span>YouTube</span>
+        </a>
+        <a href="https://open.spotify.com/user/g1vh6wyfqjq9s1hcpgfsut3iw?si=07cf2c681c3e4fe4" target="_blank">
+          <img src="images/spotify.png" alt="Spotify">
+          <span>Spotify</span>
+        </a>
+        <a href="https://discord.gg" target="_blank">
+          <img src="images/discord.png" alt="Discord">
+          <span>Discord</span>
+        </a>
+      </div>
+
+      <!-- Social small icons row -->
+      <div class="socials">
+        <a target="_blank">
+          <img src="images/batman.png" alt="Twitter">
+        </a>
+        <a target="_blank">
+          <img src="images/flower.png" alt="TikTok">
+        </a>
+        <a target="_blank">
+          <img src="images/butterflies.png" alt="Discord">
+        </a>
+      </div>
+      <!-- Audio Control Center -->
+      <div class="volume-control">
+        <div class="controls">
+            <!-- Audio element -->
+            <audio id="audioElement" loop>
+                <source src="music.mp3" type="audio/mpeg">
+            </audio>
+
+            <!-- Play/Pause Button -->
+            <div class="play-button-container">
+                <button id="playPauseBtn" class="play-button">
+                    <svg id="playIcon" class="icon play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="5,3 19,12 5,21"></polygon>
+                    </svg>
+                    <svg id="pauseIcon" class="icon pause-icon hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="6" y="4" width="4" height="16"></rect>
+                        <rect x="14" y="4" width="4" height="16"></rect>
+                    </svg>
+                </button>
+                <div id="glowEffect" class="glow-effect hidden"></div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="progress-container">
+              <span id="currentTime">0:00</span>
+              <input type="range" id="progressBar" class="progress-bar" value="0" min="0" step="1">
+              <span id="duration">2:35</span>
+            </div>
+
+            <!-- Volume Controls -->
+            <div class="volume-section">
+                <div class="volume-header">
+                    <button id="muteBtn" class="mute-button">
+                        <svg id="volumeIcon" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="11,5 6,9 2,9 2,15 6,15 11,19"></polygon>
+                            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                        </svg>
+                        <svg id="muteIcon" class="icon hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="11,5 6,9 2,9 2,15 6,15 11,19"></polygon>
+                            <line x1="23" y1="9" x2="17" y2="15"></line>
+                            <line x1="17" y1="9" x2="23" y2="15"></line>
+                        </svg>
+                    </button>
+                    <span id="volumeText" class="volume-text">35%</span>
+                </div>
+
+                <!-- Volume Slider -->
+                <div class="slider-container">
+                    <input type="range" id="volumeSlider" class="volume-slider" min="0" max="100" value="50">
+                    
+                    <!-- Volume level indicators -->
+                    <div class="volume-indicators">
+                        <div class="indicator" data-level="0"></div>
+                        <div class="indicator" data-level="1"></div>
+                        <div class="indicator" data-level="2"></div>
+                        <div class="indicator" data-level="3"></div>
+                        <div class="indicator" data-level="4"></div>
+                        <div class="indicator" data-level="5"></div>
+                        <div class="indicator" data-level="6"></div>
+                        <div class="indicator" data-level="7"></div>
+                        <div class="indicator" data-level="8"></div>
+                        <div class="indicator" data-level="9"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Audio Status -->
+            <div class="status-section">
+                <div id="statusText" class="status-text">Paused</div>
+                <div id="trackText" class="track-text">Lil Cagula - RAPID M/V</div>
+            </div>
+        </div>
+      </div>
+
+  </div>
+  <!-- End main-content -->
+  <script src="script.js"></script>
+</body>
+</html>
